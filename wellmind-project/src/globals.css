@@ -5,6 +5,7 @@
   scroll-behavior: smooth;
   --font-base: "Roboto", sans-serif;
   --color-font-black: #1e1e1e;
+  --bg-rodape: #AF93DB;
 }
 
 @layer base {
