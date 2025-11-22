@@ -36,11 +36,11 @@ export default function LoginOrCreateAccount() {
     }
   });
 
-  return (
-    <main className="">
+  return ( 
+    <main className="mt-105 lg:mt-70 flex flex-col items-center text-[var(--color-font-black)] font-bold text-[1.2rem]">
       <h1>Entre ou crie uma conta</h1>
       {loading ? (
-        <p className="">Verificando Email...</p>
+        <p className="text-[var(--color-font-black)] m-10">Verificando Email...</p>
       ) : (
         <FormloginOrCreateAccount
           register={register}
