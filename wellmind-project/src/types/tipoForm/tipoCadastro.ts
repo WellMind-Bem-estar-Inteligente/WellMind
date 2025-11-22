@@ -3,4 +3,4 @@ export type tipoCadastro =  {
     nome: string;
     idade: number;
     genero: string;
-} 
+}  
