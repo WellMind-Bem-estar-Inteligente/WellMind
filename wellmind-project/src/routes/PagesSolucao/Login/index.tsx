@@ -14,7 +14,7 @@ export default function Login() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      setLoading(true);
+      setLoading(true); 
       const response = await fetch(`${URL_API}/usuario`, {
         method: "GET",
         headers: {
@@ -44,10 +44,10 @@ export default function Login() {
   });
 
   return (
-    <main className="">
+    <main className="mt-105 lg:mt-60 flex flex-col items-center text-[var(--color-font-black)] font-bold text-[1.2rem]">
       <h1>Faça login na sua conta</h1>
       {loading ? (
-        <p className="">Carregando login...</p>
+        <p className="text-[var(--color-font-black)] m-10">Carregando login...</p>
       ) : (
         <FormLogin register={register} onSubmit={onSubmit} />
       )}

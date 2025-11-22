@@ -12,6 +12,8 @@ import LoginOrCreateAccount from './routes/PagesSolucao/LoginOrCreateAccount';
 import Login from './routes/PagesSolucao/Login';
 import Cadastro from './routes/PagesSolucao/Cadastro';
 import Perguntas from './routes/PagesSolucao/Perguntas';
+import About from './routes/PagesObrigatorias/About';
+import FAQ from './routes/PagesObrigatorias/FAQ';
 
 
 const router = createBrowserRouter([
@@ -22,7 +24,9 @@ const router = createBrowserRouter([
         {path:"/login-or-create-account", element: <LoginOrCreateAccount/>},
         {path:"/login-or-create-account/login/:email", element:<Login/>},
         {path:"/login-or-create-account/cadastro", element: <Cadastro/>},
-        {path:"/perguntas", element: <Perguntas/>}
+        {path:"/perguntas", element: <Perguntas/>},
+        {path:"/about", element: <About/>},
+        {path:"/faq", element: <FAQ/>}
     ]},
 ], {basename: import.meta.env.VITE_BASE_URL});
 

@@ -3,7 +3,6 @@ import FormCadastro from "../../../components/FormCadastro/FormCadastro";
 import { useForm } from "react-hook-form";
 import type { tipoCadastro } from "../../../types/tipoForm/tipoCadastro";
 import { useState } from "react";
-import { email } from "zod";
 
 const URL_API = import.meta.env.VITE_URL_API;
 
@@ -16,10 +15,10 @@ export default function Cadastro(){
     const onSubmit =  handleSubmit(async (data) =>{
         setLoading(true);
         const dados = {
-            email: data.email,
+            email: data.email, 
             nome: data.nome,
-            idade: data.idade,
-            genero: data.genero
+            idade: Number(data.idade),
+            genero: data.genero.toUpperCase()
         }; 
         await fetch(`${URL_API}/usuario`,{
             method:"POST",
@@ -27,7 +26,7 @@ export default function Cadastro(){
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(dados)
-        });
+        }); 
         alert("Cadastro feito com sucesso!");
         navigate("/");
         window.location.reload();
@@ -36,13 +35,13 @@ export default function Cadastro(){
     }); 
 
     return(
-        <main className="">
+        <main className="mt-105 lg:mt-60 flex flex-col items-center text-[var(--color-font-black)] font-bold text-[1.2rem]">
             {
                 loading 
-                ? <p className="">Carregando...</p>
+                ? <p className="text-[var(--color-font-black)] m-5">Cadastrando usuário...</p>
                 : <>
                     <h1>Cadastro</h1>
-                    <p className="">Você não possui cadastro, cadastre-se agora</p>
+                    <p className="text-center text-[var(--color-font-black)] m-5">Você não possui cadastro, cadastre-se agora</p>
                     <FormCadastro
                         register={register}
                         onSubmit={onSubmit}

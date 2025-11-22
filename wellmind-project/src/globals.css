@@ -5,7 +5,12 @@
   scroll-behavior: smooth;
   --font-base: "Roboto", sans-serif;
   --color-font-black: #1e1e1e;
-  --bg-rodape: #AF93DB;
+  --bg-rodape: #aca9e1;
+  --color-font-green: #5bcca4;
+  --color-font-purple: #5f5e9f;
+  --color-pink: #E069D6;
+  --color-orange: #fad5e1;
+  --color-blue-berry: #B553DB;
 }
 
 @layer base {
@@ -14,6 +19,6 @@
     font-family: var(--font-base);
   }
   main {
-    @apply w-screen; 
+    @apply mt-90 w-screen lg:mt-40; 
   }
 } 
