@@ -2,12 +2,17 @@ import { useNavigate } from "react-router-dom";
 import FormCadastro from "../../../components/FormCadastro/FormCadastro";
 import { useForm } from "react-hook-form";
 import type { tipoCadastro } from "../../../types/tipoForm/tipoCadastro";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import type { TipoUsuario } from "../../../types/tipos/tipoUsuario";
 
 const URL_API = import.meta.env.VITE_URL_API;
 
 export default function Cadastro(){
 
+    const [idDoUsuario, setIdUsuario] = useState<number | null>(null);
+    const [usuarios, setUsuarios] = useState<TipoUsuario[]>([]);
+    const usuarioSessionRaw = sessionStorage.getItem("usuario");
+    const usuarioSession = usuarioSessionRaw ? JSON.parse(usuarioSessionRaw) : null;
     const navigate = useNavigate();
     const {register, handleSubmit} = useForm<tipoCadastro>();
     const [loading, setLoading] = useState(false);
@@ -20,19 +25,39 @@ export default function Cadastro(){
             idade: Number(data.idade),
             genero: data.genero.toUpperCase()
         }; 
-        await fetch(`${URL_API}/usuario`,{
+        const response = await fetch(`${URL_API}/usuario`,{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(dados)
         }); 
+        const usuarioCriado = await response.json(); 
         alert("Cadastro feito com sucesso!");
         navigate("/");
         window.location.reload();
-        sessionStorage.setItem("usuario", JSON.stringify(data));
+        sessionStorage.setItem("usuario", JSON.stringify(usuarioCriado));
         setLoading(false);
     }); 
+    useEffect(() => {
+        const fetchData = async () => {
+                try {
+                    const response = await fetch(`${URL_API}/usuario`);
+                    const usuarios: TipoUsuario[] = await response.json();
+                    setUsuarios(usuarios);
+                    const usuarioEncontrado = usuarios.find(
+                        (u) => u.email.toLowerCase() === usuarioSession.email.toLowerCase()
+                    );
+    
+                    if (usuarioEncontrado) {
+                        setIdUsuario(usuarioEncontrado.idUsuario);
+                    }
+                } catch (error) {
+                    console.error("Erro ao buscar usuários:", error);
+                }
+            };
+            fetchData();
+        }, []);
 
     return(
         <main className="mt-105 lg:mt-60 flex flex-col items-center text-[var(--color-font-black)] font-bold text-[1.2rem]">
