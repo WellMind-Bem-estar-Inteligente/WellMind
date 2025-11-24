@@ -135,7 +135,7 @@ Gabriel Sbrana Campos
           sbranaww@gmail.com
           jrmolinillo12@gmail.com
 
-🌐 Site: https://wellmind.com
+🌐 Site: https://wellmind-liart.vercel.app/
 
 GitHub: https://github.com/WellMind-Bem-estar-Inteligente/WellMind
 
@@ -143,5 +143,8 @@ GitHub: https://github.com/WellMind-Bem-estar-Inteligente/WellMind
 📌 Repositório no GitHub
 
 https://github.com/WellMind-Bem-estar-Inteligente/WellMind
+
+Link Deploy: https://wellmind-liart.vercel.app/
+
 
 
