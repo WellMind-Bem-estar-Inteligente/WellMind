@@ -59,7 +59,7 @@ export default function Perguntas() {
         
 
         alert("Enviado com sucesso!");
-        navigate("/");
+        navigate("/feedback");
         setLoading(false);
     });
 

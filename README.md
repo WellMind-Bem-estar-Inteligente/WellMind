@@ -144,5 +144,4 @@ GitHub: https://github.com/WellMind-Bem-estar-Inteligente/WellMind
 
 https://github.com/WellMind-Bem-estar-Inteligente/WellMind
 
-▶ Vídeo demonstrativo no YouTube
 
