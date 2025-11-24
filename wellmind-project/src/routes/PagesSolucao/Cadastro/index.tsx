@@ -16,6 +16,7 @@ export default function Cadastro(){
     const navigate = useNavigate();
     const {register, handleSubmit} = useForm<tipoCadastro>();
     const [loading, setLoading] = useState(false);
+    console.log(idDoUsuario, usuarios)
 
     const onSubmit =  handleSubmit(async (data) =>{
         setLoading(true);
