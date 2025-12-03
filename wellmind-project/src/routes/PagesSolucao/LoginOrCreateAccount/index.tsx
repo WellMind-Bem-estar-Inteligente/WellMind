@@ -19,7 +19,7 @@ export default function LoginOrCreateAccount() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-        },
+        }, 
       });
       const usuarios: TipoUsuario[] = await response.json();
       const usuariosEncontrados = usuarios.filter((u) => u.email === data.email);

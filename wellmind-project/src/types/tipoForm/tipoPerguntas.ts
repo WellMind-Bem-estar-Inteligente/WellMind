@@ -1,4 +1,5 @@
 export type tipoPerguntas = {
+    idResposta: number,
     idUsuario: number,
     idHabito: number,
     sono: number,
@@ -6,6 +7,6 @@ export type tipoPerguntas = {
     estresse: number,
     agua: number,
     alimentacao: number,
-    resposta: string,
+    resposta: number,
     observacoes: string | null
 }

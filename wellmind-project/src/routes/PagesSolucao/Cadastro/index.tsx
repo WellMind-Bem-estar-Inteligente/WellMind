@@ -25,20 +25,39 @@ export default function Cadastro(){
             idade: Number(data.idade),
             genero: data.genero.toUpperCase()
         }; 
-        const response = await fetch(`${URL_API}/usuario`,{
+        await fetch(`${URL_API}/usuario`,{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(dados)
         }); 
-        const usuarioCriado = await response.json(); 
+        const response = await fetch(`${URL_API}/usuario`, {
+            method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            },
+        });
+        const usuariosBanco: TipoUsuario[] = await response.json();
+        const usuarioRegistrado = usuariosBanco.find((u: TipoUsuario) =>
+            u.email.toLowerCase() === dados.email.toLowerCase()
+        ); 
+       
+        if (!usuarioRegistrado) {
+            console.error("Usuário não encontrado no banco!");
+            alert("Erro ao registrar usuário. Tente novamente.");
+            setLoading(false);
+            return;
+        }
+        console.log("Usuário encontrado:", usuarioRegistrado);
+        
+        sessionStorage.setItem("usuario", JSON.stringify(usuarioRegistrado)); 
         alert("Cadastro feito com sucesso!");
         navigate("/");
         window.location.reload();
-        sessionStorage.setItem("usuario", JSON.stringify(usuarioCriado));
         setLoading(false);
     }); 
+    
     useEffect(() => {
         const fetchData = async () => {
                 try {

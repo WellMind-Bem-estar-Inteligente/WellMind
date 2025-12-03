@@ -12,7 +12,7 @@
   --color-orange: #fad5e1;
   --color-blue-berry: #B553DB;
 }
-
+ 
 @layer base {
   .container {
     @apply flex flex-col h-screen justify-between;
