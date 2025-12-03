@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { tipoHabito } from "../../../types/tipos/tipoHabito";
 import type { tipoPerguntas } from "../../../types/tipoForm/tipoPerguntas";
 
@@ -8,6 +8,8 @@ const GROQ_KEY = import.meta.env.VITE_GROQ_API_KEY;
 export default function Feedback() {
     const usuarioSessionRaw = sessionStorage.getItem("usuario");
     
+    const [feedbackTexto, setFeedbackTexto] = useState("");
+
     const respostasSessionRaw = sessionStorage.getItem("respostasEncontradas");
 
     useEffect(() => {
@@ -23,6 +25,7 @@ export default function Feedback() {
 
             const usuarioSession = usuarioSessionRaw ? JSON.parse(usuarioSessionRaw) : null;
             const idDoUsuario = usuarioSession?.idUsuario ?? null;
+            const nomeUsuario = usuarioSession?.nome ?? null;
 
             const respostas: tipoPerguntas[] = respostasSessionRaw? JSON.parse(respostasSessionRaw): [];
 
@@ -61,6 +64,9 @@ export default function Feedback() {
 
             ${regras}
 
+            Nome do funcionário para você colocar na resposta:  ${nomeUsuario}
+            Não coloque caracteres especiais, apena texto no feedback
+
             RESPOSTAS DO USUÁRIO:
             ${respostasFormatadas}
 
@@ -69,6 +75,8 @@ export default function Feedback() {
             2. Três recomendações práticas (curtas e aplicáveis).
             3. Um alerta se algum valor estiver fora do ideal.
             4. Um tom humano, acolhedor e motivador.
+
+            TEM QUE TER ATÉ 1000 digitos o feedback"!
                 `.trim();
 
                 return promptFinal;
@@ -83,7 +91,7 @@ export default function Feedback() {
                     "Authorization": `Bearer ${GROQ_KEY}`
                 },
                 body: JSON.stringify({
-                    model: "llama3-8b-8192",
+                    model: "llama-3.1-8b-instant",
                     messages: [
                         { role: "user", content: prompt }
                     ]
@@ -99,14 +107,15 @@ export default function Feedback() {
             
 
             function montarJsonFeedback(respostas: tipoPerguntas[], feedbackTexto: string, idUsuario: number) {
-                return respostas.map(r => ({
-                    idUsuario: idUsuario,
-                    mensagem: feedbackTexto
+                return respostas.map(()=> ({
+                    "idUsuario": idUsuario,
+                    "mensagem": feedbackTexto
                 }));
             }
 
             const prompt = gerarPrompt(habitos, respostas);
             const feedbackIA = await gerarFeedback(prompt);
+            setFeedbackTexto(feedbackIA);
 
             const json_feedback = montarJsonFeedback(respostas, feedbackIA, idDoUsuario);
 
@@ -129,9 +138,13 @@ export default function Feedback() {
     }, []);
 
     return (
-        <main className="mt-20 flex flex-col items-center text-black font-bold text-[1.2rem]">
-            <h1>Feedback do Dia</h1>        
-            <p>{}</p>   
+        <main className="mt-20rem p-10 lg:mt-40 flex flex-col items-center text-[var(--color-font-black)]">
+            <div className="p-6 m-10 bg-[var(--color-orange)] rounded-md shadow-lg w-full max-w-[700px]">
+                <h1 className="text-xl font-bold mb-6 text-center">Feedback do Dia</h1>
+                <p className="text-justify whitespace-pre-line leading-relaxed">
+                    {feedbackTexto}
+                </p>
+            </div>
         </main>
     );
 }
