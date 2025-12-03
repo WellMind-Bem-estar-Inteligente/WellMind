@@ -1,12 +1,10 @@
-<<<<<<< HEAD
-=======
 import { useEffect, useState } from "react";
 import type { tipoHabito } from "../../../types/tipos/tipoHabito";
 import type { tipoPerguntas } from "../../../types/tipoForm/tipoPerguntas";
 
 const URL_API = import.meta.env.VITE_URL_API;  
 const GROQ_KEY = import.meta.env.VITE_GROQ_API_KEY;
->>>>>>> release/1.0.3
+
 
 export default function Feedback() {
     const usuarioSessionRaw = sessionStorage.getItem("usuario");
