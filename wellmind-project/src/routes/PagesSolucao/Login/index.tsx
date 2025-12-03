@@ -25,7 +25,7 @@ export default function Login() {
       const usuarios: TipoUsuario[] = await response.json();
       const usuariosEncontrados = usuarios.filter(
         (u) => u.email === data.email
-      );
+      ); 
 
       if (usuariosEncontrados.length > 0) {
         alert("Login realizado com sucesso!");
