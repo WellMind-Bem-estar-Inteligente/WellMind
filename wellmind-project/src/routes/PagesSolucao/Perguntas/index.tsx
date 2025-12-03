@@ -48,7 +48,7 @@ export default function Perguntas() {
         ];
 
         console.log("JSON enviado:", respostas);
-
+                
         for (const r of respostas) {
             await fetch(`${URL_API}/resposta_usuario`, {
                 method:"POST",
@@ -56,11 +56,10 @@ export default function Perguntas() {
                 body: JSON.stringify(r)
             });
         }
-        
-
         alert("Enviado com sucesso!");
         navigate("/feedback");
         setLoading(false);
+        sessionStorage.setItem("respostasEncontradas", JSON.stringify(respostas));
     });
 
     return (

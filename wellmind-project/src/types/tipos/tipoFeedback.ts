@@ -1,5 +1,5 @@
 export type tipoFeedback = {
+    idFeedback: number,
     idUsuario: number,
-    idResposta: number,
     mensagem: string
 }
