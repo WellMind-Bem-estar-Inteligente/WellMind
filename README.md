@@ -7,34 +7,6 @@ WellMind é uma plataforma inteligente de autocuidado que utiliza IA generativa 
 
 ✔ Finalizado
 
-📄 Sumário
-
-Título e Descrição
-
-Status do Projeto
-
-Sumário
-
-Sobre o Projeto
-
-Tecnologias Utilizadas
-
-Instalação
-
-Como Usar
-
-Estrutura de Pastas
-
-Endpoints ou Rotas Principais
-
-Autores e Créditos
-
-Screenshots / Demonstração
-
-Contato
-
-Links (GitHub e YouTube)
-
 📚 Sobre o Projeto
 
 A WellMind foi criada para auxiliar pessoas no desenvolvimento de hábitos saudáveis por meio de um questionário diário simples. As respostas são enviadas para um modelo de IA que realiza uma análise contextual e gera recomendações personalizadas para melhorar sono, humor, hidratação e demais indicadores de bem-estar.
