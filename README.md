@@ -116,7 +116,7 @@ GitHub: https://github.com/WellMind-Bem-estar-Inteligente/WellMind
 
 https://github.com/WellMind-Bem-estar-Inteligente/WellMind
 
-Link Deploy: https://wellmind-liart.vercel.app/
+Link Deploy: [[https://wellmind-liart.vercel.app/](https://wellmind-project-ten.vercel.app/)](https://wellmind-project-ten.vercel.app/)
 
 
 
